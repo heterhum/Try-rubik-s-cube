@@ -89,7 +89,14 @@ class base:
         return 
     
     def rotate_right(self):
-        cube_copy=[self.cube[i].deepcopy() for i in self.cube] #find a way to deepcopy
+        cube_copy={}
+        for i in self.cube:
+            cube_copy[i]=[]
+            for e in self.cube[i]:
+                cube_copy[i]+=[e.copy()]
+
+        
+        #[self.cube[i].deepcopy() for i in self.cube] #find a way to deepcopy
         
         self.cube["Left"]=cube_copy["Front"]
         self.cube["Front"]=cube_copy["Left"]
