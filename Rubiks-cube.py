@@ -124,10 +124,34 @@ class base:
         self.cube["Top"]=self.turn_right(self.cube["Top"])
         self.cube["Bottom"]=self.turn_right(self.cube["Bottom"])
         return self.cube
+    
+    def rotate_up(self):
+        cube_copy=copie(self.cube)
+
+        self.cube["Top"]=cube_copy["Front"]
+        self.cube["Front"]=cube_copy["Bottom"]
+        self.cube["Bottom"]=cube_copy["Back"]
+        self.cube["Back"]=cube_copy["Top"]
         
+        self.cube["Right"]=self.turn_right(self.cube["Right"])
+        self.cube["Left"]=self.turn_left(self.cube["Left"])
+        return self.cube
+
+    def rotate_down(self):
+        cube_copy=copie(self.cube)
+
+        self.cube["Top"]=cube_copy["Back"]
+        self.cube["Front"]=cube_copy["Top"]
+        self.cube["Bottom"]=cube_copy["Front"]
+        self.cube["Back"]=cube_copy["Bottom"]
+        
+        self.cube["Right"]=self.turn_left(self.cube["Right"])
+        self.cube["Left"]=self.turn_right(self.cube["Left"])
+        return self.cube
+    
     #face=turn_left(face)
 base=base(face)
-face=base.rotate_left()
+face=base.rotate_down()
 for i in face:
     for e in face[i]:
         print(e)
