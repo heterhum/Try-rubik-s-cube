@@ -148,7 +148,7 @@ class base:
         self.cube["Right"]=self.turn_left(self.cube["Right"])
         self.cube["Left"]=self.turn_right(self.cube["Left"])
         return self.cube
-    
+    #10 fonction a faire mais flm
     #face=turn_left(face)
 base=base(face)
 face=base.rotate_down()
