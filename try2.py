@@ -65,6 +65,18 @@ class cube():
         self.D=self.rotationantihor(self.D)
         self.majface()
 
+
+    #TO DO, réglé cette fonction, testé pour voir le problème
+    def Mrotatetop(self):
+        self.F,self.U,self.B,self.D=self.D,self.F,self.U,self.B
+        self.R=self.rotationhor(self.R)
+        self.L=self.rotationantihor(self.L)
+        self.majface()
+    def Mrotatedown(self):
+        self.Mrotatetop()
+        self.Mrotatetop()
+        self.Mrotatetop()
+
     def Dcube(self):
         self.F[2],self.R[2],self.B[2],self.L[2]=self.L[2],self.F[2],self.R[2],self.B[2]
         self.D=self.rotationhor(self.D)
@@ -107,9 +119,9 @@ class cube():
         self.rotateleft()
         self.majface()
     def Eicube(self):
-        self.Rcube()
-        self.Rcube()
-        self.Rcube()
+        self.Ecube()
+        self.Ecube()
+        self.Ecube()
 
     def Lcube(self):
         self.rotateright()
@@ -117,12 +129,22 @@ class cube():
         self.rotateleft()
         self.majface()
     def Licube(self):
+        self.Lcube()
+        self.Lcube()
+        self.Lcube()
+
+    def Ycube(self):
+        self.Frotateright()
         self.Rcube()
-        self.Rcube()
-        self.Rcube()
+        self.Frotateleft()
+        self.majface()
+    def Yicube(self):
+        self.Frotateright()
+        self.Ricube()
+        self.Frotateleft()
+        self.majface()
 
 cube=cube()
-cube.Frotateleft()
 
 def setup():
     size(500, 500)
@@ -130,5 +152,28 @@ def setup():
 
 def draw():
     dessin()
+
+def key_pressed():
+    match key:
+        case "a": cube.Lcube()
+        case "o": cube.Licube()
+        case "z": cube.Ecube()
+        case "i": cube.Eicube()
+        case "e": cube.Rcube()
+        case "u": cube.Ricube()
+        case "r": cube.Ucube()
+        case "s": cube.Uicube()
+        case "t": cube.Mcube()
+        case "q": cube.Micube()
+        case "y": cube.Dcube()
+        case "p": cube.Dicube()
+        case "j": cube.Ycube()
+        case "k": cube.Yicube()
+        case "m": cube.rotateleft()
+        case "l": cube.rotateright()
+        case "d": cube.Frotateright()
+        case "g": cube.Frotateleft()
+        case "h": cube.Mrotatetop()
+        case "f": cube.Mrotatedown()
 
 run()
