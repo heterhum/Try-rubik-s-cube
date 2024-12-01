@@ -1,4 +1,5 @@
 from p5 import *
+import time
 
 STEP = 30 
 N = 3  
@@ -175,5 +176,5 @@ def key_pressed():
         case "g": cube.Frotateleft()
         case "h": cube.Mrotatetop()
         case "f": cube.Mrotatedown()
-
+           
 run()
