@@ -66,10 +66,8 @@ class cube():
         self.D=self.rotationantihor(self.D)
         self.majface()
 
-
-    #TO DO, réglé cette fonction, testé pour voir le problème
     def Mrotatetop(self):
-        self.F,self.U,self.B,self.D=self.D,self.F,self.U,self.B
+        self.F,self.U,self.B,self.D=self.D,self.F,self.U[::-1],self.B[::-1]
         self.R=self.rotationhor(self.R)
         self.L=self.rotationantihor(self.L)
         self.majface()
