@@ -1,5 +1,6 @@
 from p5 import *
 import time
+import random
 
 STEP = 30 
 N = 3  
@@ -35,6 +36,7 @@ class cube():
         self.B = [[B0[0] for _ in range(3)]for _ in range(3)]#blue, back
         self.U = [[U0[0] for _ in range(3)]for _ in range(3)]#red, top
         self.INFO_FACES1 = [self.L, self.F, self.R, self.B, self.U, self.D]
+        self.rotatelist=["a","o","z","i","e","u","r","s","t","q","y","p","j","k","m","l","d","g","h","f"]
 
     def majface(self):
         self.INFO_FACES1=[self.L, self.F, self.R, self.B, self.U, self.D]
@@ -143,6 +145,36 @@ class cube():
         self.Frotateleft()
         self.majface()
 
+    def shuffle(self):
+        l=""
+        for _ in range(30):
+            l+=random.choice(self.rotatelist)
+        
+        for i in l:
+            match i:
+                case "a": self.Lcube()
+                case "o": self.Licube()
+                case "z": self.Ecube()
+                case "i": self.Eicube()
+                case "e": self.Rcube()
+                case "u": self.Ricube()
+                case "r": self.Ucube()
+                case "s": self.Uicube()
+                case "t": self.Mcube()
+                case "q": self.Micube()
+                case "y": self.Dcube()
+                case "p": self.Dicube()
+                case "j": self.Ycube()
+                case "k": self.Yicube()
+                case "m": self.rotateleft()
+                case "l": self.rotateright()
+                case "d": self.Frotateright()
+                case "g": self.Frotateleft()
+                case "h": self.Mrotatetop()
+                case "f": self.Mrotatedown()
+            
+
+
 cube=cube()
 
 def setup():
@@ -174,5 +206,6 @@ def key_pressed():
         case "g": cube.Frotateleft()
         case "h": cube.Mrotatetop()
         case "f": cube.Mrotatedown()
+        case "n": cube.shuffle()
            
 run()
