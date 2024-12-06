@@ -1,8 +1,14 @@
 from p5 import *
 import random
 
-STEP = 10
-N = 16
+STEP = 40
+N = 2
+WIDTH=N*STEP*4+3*STEP
+HEIGHT=N*STEP*3+2*STEP
+FPS=60
+
+if N>6:
+    FPS=5
 
 #N c'est juste pour savoir comment dessiné chacune des face, trouvé par le prof 
 L0 = [(255, 255, 255), 0, N+1]  
@@ -88,9 +94,10 @@ class cube():
         self.Dcube()
     #def de toute les fonctions de rotation
     def Mcube(self):
+        if N<=2: return
         n=input("emplacement ? : ")
         if not isinstance(n,int): n=1
-        elif n<=0 or n>=N: n=1    
+        elif n<=0 or n>=N: n=1
         self.F[n],self.R[n],self.B[n],self.L[n]=self.L[n],self.F[n],self.R[n],self.B[n] #j'ai remplacé les 1 par n et monde code a été copatible avec toute les tailles de cubes
         self.majface()
     def Micube(self):
@@ -181,7 +188,7 @@ class cube():
 cube=cube() #appelle de ma classe
 
 def setup():#fonction de base p5
-    size(500, 500)
+    size(WIDTH, HEIGHT)
     background(240)
 
 def draw():#fonction de base p5
@@ -211,4 +218,4 @@ def key_pressed(): #je demande si une touche et appuyé et je compare avec l'ens
         case "f": cube.Mrotatedown()
         case "n": cube.shuffle()
            
-run() #fonction de base de p5
+run(frame_rate=FPS) #fonction de base de p5
