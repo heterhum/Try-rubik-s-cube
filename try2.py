@@ -1,10 +1,10 @@
 from p5 import *
 import random
 
-STEP = 30 
-N = 3  
+STEP = 10
+N = 16
 
-
+#N c'est juste pour savoir comment dessiné chacune des face, trouvé par le prof 
 L0 = [(255, 255, 255), 0, N+1]  
 F0 = [(0, 255, 0), N+1, N+1]  
 R0 = [(255, 255, 0), (N+1)*2, N+1]  
@@ -14,7 +14,7 @@ D0 = [(255, 165, 0), N+1, (N+1)*2]
 INFO_FACES = [L0, F0, R0, B0, U0, D0]
 
 def dessin_face(face,l): #dessiné une face en fonction des parametre donnée
-    for i in range(N):
+    for i in range(N): #je commence par le cube en bas a gauche et finie paren haut a droite
         for e in range(N):            
             x = (l[1] + i) * STEP
             y = (l[2] + e) * STEP
@@ -28,12 +28,12 @@ class cube():
 
     def __init__(self):
         
-        self.D = [[D0[0] for _ in range(3)]for _ in range(3)]#orange, bottom 
-        self.L = [[L0[0] for _ in range(3)]for _ in range(3)]#white, left
-        self.F = [[F0[0] for _ in range(3)]for _ in range(3)]#green, front
-        self.R = [[R0[0] for _ in range(3)]for _ in range(3)]#yellow, right
-        self.B = [[B0[0] for _ in range(3)]for _ in range(3)]#blue, back
-        self.U = [[U0[0] for _ in range(3)]for _ in range(3)]#red, top
+        self.D = [[D0[0] for _ in range(N)]for _ in range(N)]#orange, bottom 
+        self.L = [[L0[0] for _ in range(N)]for _ in range(N)]#white, left
+        self.F = [[F0[0] for _ in range(N)]for _ in range(N)]#green, front
+        self.R = [[R0[0] for _ in range(N)]for _ in range(N)]#yellow, right
+        self.B = [[B0[0] for _ in range(N)]for _ in range(N)]#blue, back
+        self.U = [[U0[0] for _ in range(N)]for _ in range(N)]#red, top
         self.INFO_FACES1 = [self.L, self.F, self.R, self.B, self.U, self.D]
         self.rotatelist=["a","o","z","i","e","u","r","s","t","q","y","p","j","k","m","l","d","g","h","f"]
 
@@ -79,7 +79,7 @@ class cube():
         self.Mrotatetop()
 
     def Dcube(self): #tour du crant en haut
-        self.F[2],self.R[2],self.B[2],self.L[2]=self.L[2],self.F[2],self.R[2],self.B[2] #vient simplement remplacé chaque lst par une autre, comme sa évite d'avoir a faire des .copy()
+        self.F[-1],self.R[-1],self.B[-1],self.L[-1]=self.L[-1],self.F[-1],self.R[-1],self.B[-1] #vient simplement remplacé chaque lst par une autre, comme sa évite d'avoir a faire des .copy()
         self.D=self.rotationhor(self.D) #la face d'en haut tourne dans un sens horraire donc j'apllique la fonction crée plus haut
         self.majface() #je mais a jour les face afin que toute les def est accès au meme valeurs
     def Dicube(self): #c'est la rotation de celle au dessus mais dans l'autre sens, si on tourne trois fois dans un sens c'est comme le tourné 1 fois dans l'autre
@@ -88,7 +88,10 @@ class cube():
         self.Dcube()
     #def de toute les fonctions de rotation
     def Mcube(self):
-        self.F[1],self.R[1],self.B[1],self.L[1]=self.L[1],self.F[1],self.R[1],self.B[1]
+        n=input("emplacement ? : ")
+        if not isinstance(n,int): n=1
+        elif n<=0 or n>=N: n=1    
+        self.F[n],self.R[n],self.B[n],self.L[n]=self.L[n],self.F[n],self.R[n],self.B[n] #j'ai remplacé les 1 par n et monde code a été copatible avec toute les tailles de cubes
         self.majface()
     def Micube(self):
         self.Mcube()
@@ -103,7 +106,7 @@ class cube():
         self.Ucube()
         self.Ucube()
         self.Ucube()
-
+    #flemme de les codé a la main du coup j'ai juste combiné des mouvements déja codé
     def Rcube(self):
         self.rotateright()
         self.Dcube()
