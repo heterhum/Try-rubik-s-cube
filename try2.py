@@ -2,7 +2,7 @@ from p5 import *
 import random
 
 STEP = 40
-N = 2
+N = 3
 WIDTH=N*STEP*4+3*STEP
 HEIGHT=N*STEP*3+2*STEP
 FPS=60
