@@ -1,10 +1,10 @@
 import pygame
 import random as rd
-import time 
+
 pygame.init()
 
-N=200
-STEP=3
+N=3
+STEP=50
 WIDTH=N*STEP*4+3*STEP
 HEIGHT=N*STEP*3+2*STEP
 firstt=True
@@ -207,7 +207,7 @@ while running:
             case "h": cube.Mrotatetop()
             case "f": cube.Mrotatedown()
         animation+=1
-        pygame.time.wait(200)
+        pygame.time.wait(500)
 
     else:
         for event in pygame.event.get():
