@@ -9,7 +9,7 @@ WIDTH=N*STEP*4+3*STEP
 HEIGHT=N*STEP*3+2*STEP
 firstt=True
 running = True
-animation=0
+animation=2001
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
