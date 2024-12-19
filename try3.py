@@ -61,32 +61,38 @@ class cube():
         self.F=self.rotationhor(self.F)
         self.B=self.rotationantihor(self.B)
         self.majface()
+        return None
     def rotateleft(self): 
         self.U,self.R,self.D,self.L=list(zip(*self.R))[::-1],list(zip(*self.D))[::-1],list(zip(*self.L))[::-1],list(zip(*self.U))[::-1]
         self.F=self.rotationantihor(self.F)
         self.B=self.rotationhor(self.B)
         self.majface()
+        return None
 
     def Frotateright(self):
         self.F,self.R,self.B,self.L=self.L,self.F,self.R,self.B
         self.D=self.rotationhor(self.D)
         self.U=self.rotationantihor(self.U)
         self.majface()
+        return None
     def Frotateleft(self):
         self.F,self.R,self.B,self.L=self.R,self.B,self.L,self.F
         self.U=self.rotationhor(self.U)
         self.D=self.rotationantihor(self.D)
         self.majface()
+        return None
 
     def Mrotatetop(self):
         self.F,self.U,self.B,self.D=self.D,self.F,self.U[::-1],self.B[::-1]
         self.R=self.rotationhor(self.R)
         self.L=self.rotationantihor(self.L)
         self.majface()
+        return None
     def Mrotatedown(self):
         self.Mrotatetop()
         self.Mrotatetop()
         self.Mrotatetop()
+        return None
 
     def Dcube(self): 
         self.F[-1],self.R[-1],self.B[-1],self.L[-1]=self.L[-1],self.F[-1],self.R[-1],self.B[-1] 
